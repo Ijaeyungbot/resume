@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رزومه برنامه‌نویس پایتون</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- دکمه منوی همبرگر -->
+     <!-- دکمه منوی همبرگر جدید -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <!-- سایدبار ناوبری -->
+     <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">نمونه کارها</h3>
+            
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="tell.html" class="nav-link">
+                    <i class="fab fa-telegram"></i>
+                    ربات تلگرام
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="insta.html" class="nav-link">
+                    <i class="fab fa-instagram"></i>
+                    ربات اینستاگرام
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="flask.html" class="nav-link">
+                    <i class="fas fa-flask"></i>
+                    پروژه‌های Flask
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="django.html" class="nav-link">
+                    <i class="fab fa-python"></i>
+                    پروژه‌های Django
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- لایه تاریک کننده -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- محتوای اصلی -->
+    <div class="bg-logos">
+        <img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" class="logo" alt="Python" style="color: #3776ab;">
+        <img src="https://cdn.worldvectorlogo.com/logos/javascript-1.svg" class="logo" alt="JavaScript" style="color: #f7df1e;">
+        <img src="https://cdn.worldvectorlogo.com/logos/html-1.svg" class="logo" alt="HTML" style="color: #e34f26;">
+        <img src="https://cdn.worldvectorlogo.com/logos/css-3.svg" class="logo" alt="CSS" style="color: #2965f1;">
+        <img src="https://cdn.worldvectorlogo.com/logos/tensorflow-2.svg" class="logo" alt="AI">
+    </div>
+    
+    <div class="profile-section">
+        <img src="profile.jpg" alt="پروفایل" class="profile-pic">
+        <h1 class="name">ijaeyung programer</h1>
+        <p class="title">برنامه‌نویس پایتون</p>
+    </div>
+    
+    <div class="social-links">
+        <a href="https://t.me/your_telegram" class="social-btn telegram">
+            <i class="fab fa-telegram"></i>
+            تلگرام
+        </a>
+        <a href="https://instagram.com/your_instagram" class="social-btn instagram">
+            <i class="fab fa-instagram"></i>
+            اینستاگرام
+        </a>
+    </div>
+    
+    <div class="skills-section">
+        <h2 class="skills-title">مهارت‌های من</h2>
+        <div class="skills-grid">
+            <div class="skill-item" data-skill="flask">
+                <img src="https://cdn.worldvectorlogo.com/logos/flask.svg" alt="Flask" class="skill-icon">
+                <span class="skill-name">Flask</span>
+            </div>
+            <div class="skill-item" data-skill="django">
+                <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="Django" class="skill-icon">
+                <span class="skill-name">Django</span>
+            </div>
+            <div class="skill-item" data-skill="telegram-bot">
+                <img src="https://cdn.worldvectorlogo.com/logos/telegram-1.svg" alt="Telegram Bot" class="skill-icon">
+                <span class="skill-name">ربات تلگرام</span>
+            </div>
+            <div class="skill-item" data-skill="instagram-bot">
+                <img src="https://cdn.worldvectorlogo.com/logos/instagram-2016-5.svg" alt="Instagram Bot" class="skill-icon">
+                <span class="skill-name">ربات اینستاگرام</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="description-box" id="descriptionBox">
+        <h3 class="description-title"><i class="fas fa-info-circle"></i>اطلاعات مهارت</h3>
+        <p class="description-text" id="descriptionText">روی یکی از مهارت‌ها کلیک کنید تا اطلاعات نمایش داده شود.</p>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // مدیریت منوی سایدبار
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const sidebar = document.getElementById('sidebar');
+            
+            const overlay = document.getElementById('overlay');
+            
+            function toggleMenu() {
+                const isActive = sidebar.classList.contains('active');
+                if (isActive) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    hamburgerMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                } else {
+                    sidebar.classList.add('active');
+                    overlay.classList.add('active');
+                    hamburgerMenu.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            
+            hamburgerMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMenu();
+            });
+            
+            
+            
+            overlay.addEventListener('click', function() {
+                toggleMenu();
+            });
+            
+            // بستن منو با کلیک روی هر جای صفحه به جز خود منو و دکمه همبرگر
+            document.addEventListener('click', function(e) {
+                if (sidebar.classList.contains('active') && 
+                    !sidebar.contains(e.target) && 
+                    !hamburgerMenu.contains(e.target)) {
+                    toggleMenu();
+                }
+            });
+            
+            // مدیریت نمایش توضیحات مهارت‌ها
+            const skillItems = document.querySelectorAll('.skill-item');
+            const descriptionBox = document.getElementById('descriptionBox');
+            const descriptionText = document.getElementById('descriptionText');
+            
+            const skillDescriptions = {
+                'flask': {
+                    title: '<i class="fab fa-python"></i> توسعه با Flask',
+                    text: 'تخصص در ساخت API و برنامه‌های وب با استفاده از میکروفریم‌ورک Flask. توانایی در پیاده‌سازی سیستم‌های احراز هویت، ارتباط با پایگاه داده‌های مختلف و بهینه‌سازی عملکرد.'
+                },
+                'django': {
+                    title: '<i class="fab fa-python"></i> توسعه با Django',
+                    text: 'تجربه در ساخت برنامه‌های وب پیچیده با استفاده از فریم‌ورک Django. تسلط بر معماری MVT، سیستم ادمین Django، ORM و پیاده‌سازی سیستم‌های کاربردی با امنیت بالا.'
+                },
+                'telegram-bot': {
+                    title: '<i class="fab fa-telegram"></i> ربات تلگرام',
+                    text: ' تسلط کامل بر ساخت انواع ربات تلگرام با استفاده از کتابخانه‌های python-telegram-bot و Telethon. تجربه توسعه ربات‌های کاربردی، سرگرمی و دستیارهای هوش مصنوعی با قابلیت اتصال به APIها و سرویس‌های مختلف. توانمند در طراحی ربات‌های قابل اعتماد، تعاملی و مقیاس‌پذیر.'
+                },
+                'instagram-bot': {
+                    title: '<i class="fab fa-instagram"></i> ربات اینستاگرام',
+                    text: 'قابلیت ساخت ربات‌های مدیریت اینستاگرام شامل پاسخ‌گویی خودکار به کامنت‌ها و دایرکت‌ها، فیلتر و دسته‌بندی پیام‌ها، و تحلیل تعامل کاربران. همچنین توانایی طراحی دستیار هوش مصنوعی برای پاسخ هوشمند به دایرکت‌ها با بهره‌گیری از مدل‌های پردازش زبان طبیعی.'
+                }
+            };
+            
+            skillItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const skill = this.getAttribute('data-skill');
+                    const description = skillDescriptions[skill];
+                    
+                    descriptionBox.classList.remove('active');
+                    
+                    setTimeout(() => {
+                        descriptionText.innerHTML = description.text;
+                        descriptionBox.querySelector('.description-title').innerHTML = description.title;
+                        descriptionBox.classList.add('active');
+                    }, 300);
+                });
+            });
+            
+            // نمایش اولیه با تأخیر برای افکت
+            setTimeout(() => {
+                descriptionBox.classList.add('active');
+            }, 1000);
+            
+            // ایجاد افکت glow پویا برای لوگوها
+            const logos = document.querySelectorAll('.logo');
+            setInterval(() => {
+                logos.forEach(logo => {
+                    const randomGlow = Math.random() * 25 + 15;
+                    const randomBrightness = Math.random() * 0.3 + 1.2;
+                    logo.style.filter = `drop-shadow(0 0 ${randomGlow}px currentColor) brightness(${randomBrightness})`;
+                });
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

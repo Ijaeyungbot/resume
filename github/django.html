@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>پروژه‌های Django</title>
+    <link rel="stylesheet" href="style_tell.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <button class="back-btn" onclick="window.location.href='index.html'">
+            <i class="fas fa-arrow-right"></i> بازگشت
+        </button>
+        <h1>پروژه‌های Django من</h1>
+        <p>در این صفحه می‌توانید با پروژه‌های Django که طراحی کرده‌ام آشنا شوید.</p>
+    </header>
+    
+    <!-- دکمه منوی همبرگر -->
+    <div class="hamburger-menu" id="hamburgerMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    
+    <!-- سایدبار ناوبری -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3 class="sidebar-title">نمونه کارها</h3>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="tell.html" class="nav-link">
+                    <img src="https://cdn.worldvectorlogo.com/logos/telegram-1.svg" alt="Telegram" style="width: 20px; height: 20px; margin-left: 8px;">
+                    ربات تلگرام
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="flutter.html" class="nav-link">
+                    <img src="https://cdn.worldvectorlogo.com/logos/flutter.svg" alt="Flutter" style="width: 20px; height: 20px; margin-left: 8px;">
+                    نمونه برنامه‌های فلاتر
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="flask.html" class="nav-link">
+                    <img src="https://cdn.worldvectorlogo.com/logos/flask.svg" alt="Flask" style="width: 20px; height: 20px; margin-left: 8px; filter: brightness(0) saturate(100%) invert(48%) sepia(79%) saturate(2476%) hue-rotate(86deg) brightness(150%) contrast(119%);">
+                    پروژه‌های Flask
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="django.html" class="nav-link">
+                    <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="Django" style="width: 20px; height: 20px; margin-left: 8px;">
+                    پروژه‌های Django
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <!-- لایه تاریک کننده -->
+    <div class="overlay" id="overlay"></div>
+    
+    <!-- محتوای اصلی -->
+    <div class="bg-logos">
+        <img src="https://cdn.worldvectorlogo.com/logos/python-5.svg" class="logo" alt="Python" style="color: #3776ab;">
+        <img src="https://cdn.worldvectorlogo.com/logos/django.svg" class="logo" alt="Django" style="color: #092e20;">
+        <img src="https://cdn.worldvectorlogo.com/logos/postgresql.svg" class="logo" alt="PostgreSQL" style="color: #336791;">
+        <img src="https://cdn.worldvectorlogo.com/logos/redis.svg" class="logo" alt="Redis" style="color: #dc382d;">
+        <img src="https://cdn.worldvectorlogo.com/logos/nginx.svg" class="logo" alt="Nginx" style="color: #009639;">
+    </div>
+    
+    <div class="description-box" id="descriptionBox">
+        <h3 class="description-title"><i class="fab fa-python"></i>پروژه نمونه Django</h3>
+        <div class="tell_link">
+            <p class="description-text" id="descriptionText" style="padding-top: 20px;">این پروژه نمونه‌ای از مهارت‌های من در توسعه با Django است. شامل MVT architecture، Django Admin، ORM، authentication system و deployment می‌باشد.</p>
+            <div class="skill-item" data-skill="django-project" onclick="window.open('https://github.com/your-username/django-sample-project')">
+                <img src="https://cdn.worldvectorlogo.com/logos/django.svg" alt="Django Project" class="skill-icon">
+                <span class="skill-name">مشاهده پروژه</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="social-links" id="back-btn">
+        <a href="index.html" class="social-btn telegram">
+            <i></i>
+            بازگشت به صفحه اصلی
+        </a>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // مدیریت منوی سایدبار
+            const hamburgerMenu = document.getElementById('hamburgerMenu');
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            function toggleMenu() {
+                const isActive = sidebar.classList.contains('active');
+                if (isActive) {
+                    sidebar.classList.remove('active');
+                    overlay.classList.remove('active');
+                    hamburgerMenu.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                } else {
+                    sidebar.classList.add('active');
+                    overlay.classList.add('active');
+                    hamburgerMenu.classList.add('active');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+            
+            hamburgerMenu.addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleMenu();
+            });
+            
+            overlay.addEventListener('click', function() {
+                toggleMenu();
+            });
+            
+            // بستن منو با کلیک روی هر جای صفحه به جز خود منو و دکمه همبرگر
+            document.addEventListener('click', function(e) {
+                if (sidebar.classList.contains('active') && 
+                    !sidebar.contains(e.target) && 
+                    !hamburgerMenu.contains(e.target)) {
+                    toggleMenu();
+                }
+            });
+            
+            // مدیریت نمایش توضیحات مهارت‌ها
+            const descriptionBox = document.getElementById('descriptionBox');
+            const backbtn = document.getElementById("back-btn");
+            
+            // نمایش اولیه با تأخیر برای افکت
+            setTimeout(() => {
+                descriptionBox.classList.add('active');
+            }, 100);
+            
+            setTimeout(() => {
+                backbtn.classList.add('active');
+            }, 200);
+            
+            // ایجاد افکت glow پویا برای لوگوها
+            const logos = document.querySelectorAll('.logo');
+            setInterval(() => {
+                logos.forEach(logo => {
+                    const randomGlow = Math.random() * 25 + 15;
+                    const randomBrightness = Math.random() * 0.3 + 1.2;
+                    logo.style.filter = `drop-shadow(0 0 ${randomGlow}px currentColor) brightness(${randomBrightness})`;
+                });
+            }, 1000);
+        });
+    </script>
+</body>
+</html> 
